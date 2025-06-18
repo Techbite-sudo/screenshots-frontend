@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Website Screenshot Tool Frontend
 
-## Getting Started
+This is the frontend for the Website Screenshot Tool, built with Next.js 15 and shadcn/ui. It allows users to enter a website URL, capture screenshots of all internal pages, and download them as a ZIP file. The frontend communicates with a FastAPI backend.
 
-First, run the development server:
+## Features
+- Beautiful UI with shadcn components
+- URL input and screenshot capture
+- Displays screenshots as cards
+- Download all screenshots as a ZIP
+- Toast notifications for user feedback
 
+## Setup
+
+### 1. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure environment variables
+Create a `.env.local` file in the `frontend` directory:
+```env
+NEXT_PUBLIC_BACKEND_URL=https://your-backend-domain.com
+```
+Replace with your actual backend URL (no trailing slash).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configure image domains
+Edit `next.config.js` and add your backend domain to the `images.domains` array:
+```js
+images: {
+  domains: ['your-backend-domain.com'],
+},
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run locally
+```bash
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+### 5. Build for production
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 6. Deploy
+Deploy to Vercel, Netlify, or your preferred host. Set the `NEXT_PUBLIC_BACKEND_URL` environment variable in your deployment settings.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- The backend must be deployed and accessible from the frontend.
+- Update the backend URL and image domain as needed for your deployment.
