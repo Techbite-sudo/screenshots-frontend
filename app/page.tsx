@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
-import { toast, Toaster } from "../components/ui/sonner";
+import { Toaster } from "../components/ui/sonner";
+import { toast } from "sonner";
+import Image from "next/image";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -28,6 +30,7 @@ export default function Home() {
       setFolder(data.folder);
       toast.success("Screenshots captured!");
     } catch (err) {
+      console.error(err);
       toast.error("Failed to capture screenshots");
     } finally {
       setLoading(false);
@@ -61,9 +64,11 @@ export default function Home() {
             <div className="flex flex-wrap gap-4 justify-center">
               {screenshots.map((src, i) => (
                 <Card key={src} className="p-2 w-48">
-                  <img
+                  <Image
                     src={src}
                     alt={`Screenshot ${i + 1}`}
+                    width={192}
+                    height={128}
                     className="rounded shadow object-cover w-full h-32"
                   />
                   <div className="text-xs text-center mt-2">Screenshot {i + 1}</div>
